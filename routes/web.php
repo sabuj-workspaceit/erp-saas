@@ -3,9 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // 6.1 Main domain (marketing + registration + system admin)
 Route::domain(config('app-domain.base'))->group(function () {
@@ -30,7 +30,6 @@ Route::domain(config('app-domain.base'))->group(function () {
 // 6.2 Tenant area (subdomains)
 Route::domain('{tenant}.' . config('app-domain.base'))->group(function () {
     Route::get('/', function () {
-        dd('here');
         $tenant = app('tenant'); // from TenantMiddleware
         return view('tenant.welcome', compact('tenant'));
     });
